@@ -1,4 +1,4 @@
-package com.cs.enodes;
+package com.cs.enotes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

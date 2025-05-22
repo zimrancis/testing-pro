@@ -1,4 +1,4 @@
-package com.cs.enodes;
+package com.cs.enotes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
