@@ -7,6 +7,7 @@ import com.cs.enotes.service.CategoryService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,7 +23,8 @@ public class CategoryServiceImpl implements CategoryService {
     public Boolean saveCategory(Category category) {
 
         category.setIsDeleted(false);
-
+        category.setCreatedBy(1);
+        category.setCreatedOn(new Date());
         Category saveCategory = categoryRepo.save(category);
 
         if (ObjectUtils.isEmpty(saveCategory)) {

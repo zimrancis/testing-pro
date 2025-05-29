@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EnodesApplication {
+public class EnotesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EnodesApplication.class, args);
+		SpringApplication.run(EnotesApplication.class, args);
 	}
 
 }

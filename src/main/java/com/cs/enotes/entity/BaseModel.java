@@ -11,7 +11,6 @@ import java.util.Date;
 @MappedSuperclass
 public class BaseModel {
 
-    private String description;
     private Boolean isActive;
     private Boolean isDeleted;
     private Integer createdBy;

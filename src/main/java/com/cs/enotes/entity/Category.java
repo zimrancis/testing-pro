@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
+//@SuperBuilder
 @Entity
 @Table(name = "CATEGORY")
 public class Category extends BaseModel {
