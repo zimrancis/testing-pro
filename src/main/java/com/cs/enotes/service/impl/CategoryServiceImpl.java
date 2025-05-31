@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -50,8 +51,21 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public CategoryDTO getCategoryById(Integer id) {
+
+        Optional<Category> findByCategory = categoryRepo.findByIdAndIsDeletedFalse(id);
+
+        if (findByCategory.isPresent()) {
+            Category category = findByCategory.get();
+            return modelMapper.map(category, CategoryDTO.class);
+        }
+        return null;
+    }
+
+
+    @Override
     public List<CategoryDTO> getAllCategory() {
-        List<Category> categories = categoryRepo.findAll();
+        List<Category> categories = categoryRepo.findByAndIsDeletedFalse();
 
         /*List<CategoryDTO> categoryDtoList = categories.stream()
                 .map(cat -> modelMapper.map(cat, CategoryDTO.class))
@@ -67,10 +81,46 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryResponse> getActiveCategory() {
 
-        List<Category> categories = categoryRepo.findByIsActiveTrue();
+        List<Category> categories = categoryRepo.findByIsActiveTrueAndIsDeletedFalse();
         List<CategoryResponse> categoryResponseList = categories.stream()
                 .map(cat -> modelMapper.map(cat, CategoryResponse.class))
                 .toList();
         return categoryResponseList;
     }
+
+
+    /*@Override
+    public void deleteCategoryById(Long id) {
+        if (!categoryRepository.existsById(id)) {
+            throw new NoSuchElementException("Category with ID " + id + " not found.");
+        }
+        categoryRepository.deleteById(id);
+    }*/
+
+
+   /* @Override
+    public Boolean deleteCategoryById(Integer id) {
+
+        if (!categoryRepo.existsById(id)) {
+            return false;
+        }
+        categoryRepo.deleteById(id);
+        return true;
+    }*/
+
+    @Override
+    public Boolean deleteCategoryById(Integer id) {
+
+        Optional<Category> findCategoryById = categoryRepo.findById(id);
+        if (findCategoryById.isPresent()) {
+            Category category = findCategoryById.get();
+            category.setIsDeleted(true);
+            categoryRepo.save(category);
+            return true;
+        } else
+            return false;
+
+    }
+
+
 }
