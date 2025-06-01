@@ -9,11 +9,13 @@ public interface CategoryService {
 
     public Boolean saveCategory(CategoryDTO categoryDto);
 
+    public CategoryDTO getCategoryById(Integer id);
+
     public List<CategoryDTO> getAllCategory();
 
     public List<CategoryResponse> getActiveCategory();
 
-    /*public CategoryDTO getCategoryById(Integer id) throws Exception;
+    /*public CategoryDTO updateCategoryById(Integer id) throws Exception;*/
 
-    public Boolean deleteCategory(Integer id);*/
+    public Boolean deleteCategoryById(Integer id);
 }
